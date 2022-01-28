@@ -6,6 +6,11 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 
+#filter
+from django_filters.rest_framework import DjangoFilterBackend
+#search filter
+from rest_framework import filters
+
 
 # Create your views here.
 """
@@ -46,6 +51,8 @@ def  save_reservation(request):
 class FlightViewSet(viewsets.ModelViewSet):
     queryset = Flight.objects.all()
     serializer_class = FlightSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['flightNumber', 'departureCity', 'arrivalCity']
 
 class PassengerViewSet(viewsets.ModelViewSet):
     queryset = Passenger.objects.all()
