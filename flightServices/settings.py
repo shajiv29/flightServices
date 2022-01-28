@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
     'flightApp',
 ]
 
@@ -50,6 +51,7 @@ REST_FRAMEWORK={
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -124,6 +126,15 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+# CROS Configuration
+ALLOWED_HOSTS=['*']
+CROS_ORIGIN_ALLOW_ALL = True
+
+
+# if  cros origin is false and remove ALLOWED_HOSTS = ['*'] this
+#CROS_ORIGIN_ALLOW_ALL = False
+#CROS_ORIGIN_WHITELIST = ('http://localhost:4200', )
 
 
 # Static files (CSS, JavaScript, Images)
