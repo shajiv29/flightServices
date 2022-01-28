@@ -11,6 +11,9 @@ from django_filters.rest_framework import DjangoFilterBackend
 #search filter
 from rest_framework import filters
 
+# auth
+from rest_framework.permissions import IsAuthenticated
+
 
 # Create your views here.
 """
@@ -53,6 +56,8 @@ class FlightViewSet(viewsets.ModelViewSet):
     serializer_class = FlightSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['flightNumber', 'departureCity', 'arrivalCity']
+    # then migrate then auto create database table
+    permission_classes = (IsAuthenticated,)
 
 class PassengerViewSet(viewsets.ModelViewSet):
     queryset = Passenger.objects.all()
